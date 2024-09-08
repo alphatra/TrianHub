@@ -24,7 +24,7 @@ export default function DashboardPage() {
 
     return (
         <div>
-            <h1>Welcome to your dashboard, {session.user.name}!</h1>
+            <h1>Welcome tso your dashboard, {session.user.name}!</h1>
             <p>Your email is: {session.user.email}</p>
         </div>
     );
