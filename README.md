@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projekt Frontend
 
-## Getting Started
+Ten projekt to aplikacja frontendowa stworzona przy użyciu Next.js, zintegrowana z Prisma ORM i skonfigurowana do uruchamiania w środowisku Docker.
 
-First, run the development server:
+## Wymagania wstępne
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Node.js](https://nodejs.org/) (wersja 18 lub nowsza)
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Git](https://git-scm.com/downloads)
+
+## Instalacja
+
+1. Sklonuj repozytorium:
+   ```
+   git clone https://github.com/twoj-username/nazwa-repo.git
+   cd nazwa-repo
+   ```
+
+2. Zainstaluj zależności:
+   ```
+   npm install
+   ```
+
+3. Skonfiguruj zmienne środowiskowe:
+   - Skopiuj plik `.env.example` do `.env`:
+     ```
+     cp .env.example .env
+     ```
+   - Edytuj plik `.env` i ustaw odpowiednie wartości, szczególnie `DATABASE_URL`.
+
+4. Wygeneruj Prisma Client:
+   ```
+   npx prisma generate
+   ```
+
+## Uruchamianie aplikacji
+
+### Lokalnie
+
+1. Uruchom serwer deweloperski:
+   ```
+   npm run dev
+   ```
+
+2. Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
+
+### Używając Dockera
+
+1. Zbuduj i uruchom kontenery:
+   ```
+   docker-compose up --build
+   ```
+
+2. Aplikacja będzie dostępna pod adresem [http://localhost:3000](http://localhost:3000).
+
+## Struktura projektu
+
+- `/app` - Główny katalog aplikacji Next.js
+- `/components` - Komponenty React
+- `/lib` - Biblioteki i narzędzia pomocnicze
+- `/prisma` - Schemat i migracje Prisma
+- `/public` - Statyczne zasoby
+
+## Migracje bazy danych
+
+Aby utworzyć nową migrację:
+
+```
+npx prisma migrate dev --name nazwa_migracji
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Testy
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Uruchom testy:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+npm test
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Instrukcje dotyczące wdrożenia projektu znajdziesz w pliku [DEPLOYMENT.md](DEPLOYMENT.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Współpraca
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Jeśli chcesz przyczynić się do rozwoju projektu, zapoznaj się z [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Deploy on Vercel
+## Licencja
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Ten projekt jest licencjonowany na podstawie [MIT License](LICENSE).
