@@ -2,12 +2,23 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
+# Kopiuj pliki package.json i package-lock.json (jeśli istnieje)
+COPY package*.json ./
+
+# Zainstaluj zależności
+RUN npm ci
+
+# Kopiuj resztę kodu źródłowego
 COPY . .
-RUN npm install
-RUN npm install -D @swc/cli @swc/core
+
+# Generuj Prisma Client
+RUN npx prisma generate
+
+# Buduj aplikację
 RUN npm run build
 
-
-COPY . /usr/src/app
+# Eksponuj port 3000
 EXPOSE 3000
-CMD [ "npm", "run", "dev" ]
+
+# Uruchom aplikację
+CMD ["npm", "start"]
