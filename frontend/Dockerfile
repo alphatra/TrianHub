@@ -14,11 +14,8 @@ COPY . .
 # Generuj Prisma Client
 RUN npx prisma generate
 
-# Buduj aplikację
-RUN npm run build
-
 # Eksponuj port 3000
 EXPOSE 3000
 
-# Uruchom aplikację
-CMD ["npm", "start"]
+# Uruchom aplikację w trybie deweloperskim
+CMD ["npm", "run", "dev"]
