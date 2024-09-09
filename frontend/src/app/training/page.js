@@ -119,7 +119,10 @@ export default function TrainingPage() {
                         />
                     ) : (
                         <>
-                            <h1 className="text-2xl font-bold mb-6">Trening</h1>
+                            <h1 className="text-2xl font-bold mb-6 flex items-center space-x-4">
+                            <span>Trening</span>
+                            <Button variant="outline" onClick={() => router.push('/training/add-exercise')}>+</Button>
+                            </h1>
                             <div className="flex items-center mb-6 space-x-4">
                                 <div className="relative flex-grow">
                                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
