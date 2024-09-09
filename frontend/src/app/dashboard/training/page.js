@@ -16,7 +16,6 @@ export default function TrainingPage() {
     const [exercises, setExercises] = useState([]);
     const [selectedExercise, setSelectedExercise] = useState(null);
     const [isAddingExercise, setIsAddingExercise] = useState(false);
-    const { data: session, status } = useSession();
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -37,18 +36,6 @@ export default function TrainingPage() {
         fetchExercises();
     }, []);
 
-    if (status === "loading") {
-        return (
-            <div className="flex items-center justify-center h-screen">
-                <Loader2 className="mr-2 h-16 w-16 animate-spin" />
-            </div>
-        );
-    }
-
-    if (status === "unauthenticated") {
-        router.push("/login");
-        return null;
-    }
 
     const filteredExercises = exercises.filter(exercise =>
         exercise.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -74,43 +61,6 @@ export default function TrainingPage() {
     };
 
     return (
-        <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
-            {/* Sidebar */}
-            <Card className="w-64 p-4 m-2 space-y-4">
-                <div className="flex items-center space-x-4">
-                    <Avatar>
-                        <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || "User"} />
-                        <AvatarFallback>{session?.user?.name?.slice(0, 2).toUpperCase() || "U"}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                        <h2 className="font-semibold">{session?.user?.name}</h2>
-                        <p className="text-sm text-gray-500">{session?.user?.email}</p>
-                    </div>
-                </div>
-                <nav className="space-y-2">
-                    <Link href="/dashboard">
-                        <Button variant="ghost" className="w-full justify-start">
-                            <LayoutDashboard className="mr-2 h-4 w-4" />
-                            Panel
-                        </Button>
-                    </Link>
-                    <Button variant="secondary" className="w-full justify-start">
-                        <Dumbbell className="mr-2 h-4 w-4" />
-                        Trening
-                    </Button>
-                    <Button variant="ghost" className="w-full justify-start">
-                        <Brain className="mr-2 h-4 w-4" />
-                        Asystent treningowy
-                    </Button>
-                    <Button variant="ghost" className="w-full justify-start">
-                        <Calendar className="mr-2 h-4 w-4" />
-                        Harmonogram
-                    </Button>
-                </nav>
-            </Card>
-
-            {/* Main content */}
-            <div className="flex-1 p-6 overflow-auto">
                 <Card className="p-6">
                     {selectedExercise ? (
                         <ExerciseDetails
@@ -165,7 +115,5 @@ export default function TrainingPage() {
                         </>
                     )}
                 </Card>
-            </div>
-        </div>
     );
 }
