@@ -65,10 +65,12 @@ export default function DashboardLayout({children}) {
                         Asystent treningowy
                     </Button>
                     </Link>
+                    <Link href="/dashboard/calendar">
                     <Button variant="ghost" className="w-full justify-start">
                         <Calendar className="mr-2 h-4 w-4" />
                         Harmonogram
                     </Button>
+                    </Link>
                 </nav>
             </Card>
 
