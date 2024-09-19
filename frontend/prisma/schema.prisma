@@ -33,3 +33,29 @@ model Exercise {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
+model Workout {
+  id        String           @id @default(cuid())
+  title     String
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  sections  WorkoutSection[]
+}
+
+model WorkoutSection {
+  id        String            @id @default(cuid())
+  name      String
+  workoutId String
+  workout   Workout           @relation(fields: [workoutId], references: [id])
+  exercises WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id               String         @id @default(cuid())
+  name             String
+  sets             String
+  quantity         String
+  unit             String
+  workoutSectionId String
+  workoutSection   WorkoutSection @relation(fields: [workoutSectionId], references: [id])
+}

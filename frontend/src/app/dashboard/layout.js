@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Dumbbell, Brain, Calendar, Loader2 } from "lucide-react";
+import { LayoutDashboard, Dumbbell, Brain, Calendar, Loader2, List } from "lucide-react";
 
 export default function DashboardLayout({children}) {
     const { data: session, status } = useSession();
@@ -56,13 +56,13 @@ export default function DashboardLayout({children}) {
                     <Link href="/dashboard/training">
                         <Button variant="ghost" className="w-full justify-start">
                             <Dumbbell className="mr-2 h-4 w-4" />
-                            Trening
+                            Ćwiczenia
                         </Button>
                     </Link>
-                    <Link href="/dashboard/asystent">
+                    <Link href="/dashboard/workouts">
                     <Button variant="ghost" className="w-full justify-start">
-                        <Brain className="mr-2 h-4 w-4" />
-                        Asystent treningowy
+                        <List className="mr-2 h-4 w-4" />
+                        Lista treningów
                     </Button>
                     </Link>
                     <Link href="/dashboard/calendar">
