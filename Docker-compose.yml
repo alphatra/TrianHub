@@ -1,22 +1,17 @@
 services:
   # Frontend
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/.next
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=mysql://root:password@db:3306/db
-      - WATCHPACK_POLLING=true
-    networks:
-      - app_network
-    depends_on:
-      - db
+     build:
+       context: ./frontend
+       dockerfile: Dockerfile
+     ports:
+       - "3000:3000"
+     environment:
+       - DATABASE_URL=mysql://root:password@db:3306/db
+     networks:
+       - app_network
+     depends_on:
+       - db
 
   # Database
   db:
