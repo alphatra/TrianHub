@@ -33,3 +33,43 @@ model Exercise {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
+model ScheduledWorkout {
+  id        String   @id @default(cuid())
+  name      String
+  date      DateTime
+  duration  Int
+  workoutId String?  // Pole opcjonalne, jeśli używamy `SetNull`
+  Workout   Workout? @relation(fields: [workoutId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Workout {
+  id                String             @id @default(cuid())
+  title             String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  sections          WorkoutSection[]
+  scheduledWorkouts ScheduledWorkout[]
+}
+
+model WorkoutSection {
+  id        String            @id @default(cuid())
+  name      String
+  workoutId String
+  workout   Workout           @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exercises WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id               String         @id @default(cuid())
+  name             String
+  sets             String
+  quantity         String
+  unit             String
+  duration         Int? // Czas trwania (jeśli ćwiczenie jest oparte na czasie)
+  rest             Int? // Przerwa po zakończeniu ćwiczenia
+  workoutSectionId String
+  workoutSection   WorkoutSection @relation(fields: [workoutSectionId], references: [id], onDelete: Cascade)
+}
